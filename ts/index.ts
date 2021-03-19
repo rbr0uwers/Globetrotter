@@ -4,7 +4,7 @@ const locationArr : Array<Locations>  = [
     new Restaurant("Lemon Leaf Thai Restaurant", "Vienna", "1050", "Kettenbrückengasse 19", "img/lemonleaf.jpg", new Date(Date.now() - 11000000000), "+43(1)5812308", "Thai", new URL("http://www.lemonleaf.at")),
     new Restaurant("SIXTA", "Vienna", "1050", "Schönbrunner Straße 21", "img/sixta.jpg", new Date(Date.now() - 70000000000), "+43 1 58 528 56", "Austrian", new URL("http://www.sixta-restaurant.at/")),
     new Events("Kris Kristofferson", "Vienna", "1150", `Wiener Stadthalle, Halle F, Roland Rainer Platz 1`, "img/kristofferson.jpg", new Date(Date.now() - 95000000000), new Date(2021, 11, 15, 20, 0), 58.50),
-    new Events("Lenny Kravitz", "Vienna", "1150", `Wiener Stadthalle, Halle D, Roland Rainer Platz 1`, "img/kravitz.jpg", new Date(Date.now() - 30000000000), new Date(2029, 12, 9, 19, 30), 47.80),
+    new Events("Lenny Kravitz", "Vienna", "1150", `Wiener Stadthalle, Halle D, Roland Rainer Platz 1`, "img/kravitz.jpg", new Date(Date.now() - 24000000000), new Date(2029, 12, 9, 19, 30), 47.80),
     new Locations("Mariahilferstrasse", "Vienna", "1070", "Mariahilferstrasse", "img/mahue.jpg", new Date(Date.now() - 10500000000)),
     new Locations("Stephansdom", "Vienna", "1010", "Stephansplatz 3", "img/steffl.jpg", new Date(Date.now() - 8800000000)),
     new Restaurant("Der Wiener Deewan", "Vienna", "1090", "Liechtensteinstraße 10", "img/deewan.jpg", new Date(Date.now() - 15000000000), "+43(1)58435418", "Pakistanian", new URL("http://www.deewan.at/")),
@@ -14,6 +14,7 @@ const locationArr : Array<Locations>  = [
 ]
 
 let currentPageFilter : string = "";
+let currentPageSort : {sort : string, asc : boolean} = {sort : "", asc : true};
 
 createContent(locationArr);
 registerElements();
@@ -44,8 +45,27 @@ function filterContent(filter: string) : void {
     @param prop     Value of the data-assoc attribute from the calling HTMLElement 
 */
 function sortContent(prop : string) : void {
-    if (prop === "title") locationArr.sort((a, b) => a[prop].localeCompare(b[prop])); 
-    else if (prop ==="date") locationArr.sort((a, b) => b[prop].getTime() - a[prop].getTime());
-    
+    let asc : boolean = evaluateCurrentSort(prop);
+
+    if (prop === "title") {
+        if (asc) locationArr.sort((a, b) => a[prop].localeCompare(b[prop]));
+        else locationArr.sort((a, b) => b[prop].localeCompare(a[prop]));
+    }
+    else if (prop ==="date") {
+        if (asc) locationArr.sort((a, b) => a[prop].getTime() - b[prop].getTime());
+        else locationArr.sort((a, b) => b[prop].getTime() - a[prop].getTime());
+    }
+
     filterContent(currentPageFilter);
+}
+
+function evaluateCurrentSort(prop : string) {
+    if (currentPageSort.sort === prop) {
+        currentPageSort.asc = !currentPageSort.asc;
+    } else {
+        currentPageSort.sort = prop;
+        currentPageSort.asc = true;
+    }
+
+    return currentPageSort.asc;
 }
