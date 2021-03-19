@@ -7,6 +7,7 @@ const locationArr : Array<Locations>  = [
     new Events("Lenny Kravitz", "Vienna", "1150", `Wiener Stadthalle, Halle D, Roland Rainer Platz 1`, "img/kravitz.jpg", new Date(Date.now() - 30000000000), new Date(2029, 12, 9, 19, 30), 47.80)
 ]
 
+let currentPageFilter : string = "";
 
 createContent(locationArr);
 registerElements();
@@ -14,15 +15,23 @@ registerElements();
 function createContent(data : Array<Locations>) : void{
     let generatedContent : string = '';
     data.forEach(location => generatedContent += location.display());
-    document.querySelector(`[data-meta="Entry"]`)!.innerHTML = generatedContent;
+    document.querySelector(`[data-meta="entry"]`)!.innerHTML = generatedContent;
 }
 
 function registerElements() : void {
-    document.querySelectorAll(`[data-meta="Filter"]`).forEach(ele => ele.addEventListener("click", filterContent));
+    document.querySelectorAll(`[data-meta="filter"]`).forEach(ele => ele.addEventListener("click", function(this : HTMLElement){filterContent(this.dataset.assoc || "")}));
+    document.querySelectorAll(`[data-meta="sort"]`).forEach(ele => ele.addEventListener("click", function(this : HTMLElement){sortContent(this.dataset.assoc || "")}));
 }
 
-function filterContent(this: HTMLElement) : void {
-    let filter : string = this.dataset.assoc?.toLowerCase() || "";
-    if (!filter) createContent(locationArr);
-    else createContent(locationArr.filter(ele => ele.constructor.name.toLowerCase() === filter));
+function filterContent(filter: string) : void {
+    currentPageFilter = filter;
+    if (!currentPageFilter) createContent(locationArr);
+    else createContent(locationArr.filter(ele => ele.constructor.name.toLowerCase() === currentPageFilter));
+}
+
+function sortContent(prop : string) : void {
+    if (prop === "title") locationArr.sort((a, b) => a[prop].localeCompare(b[prop])); 
+    else if (prop ==="date") locationArr.sort((a, b) => b[prop].getTime() - a[prop].getTime());
+    
+    filterContent(currentPageFilter);
 }
