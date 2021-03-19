@@ -13,8 +13,14 @@ const locationArr : Array<Locations>  = [
     new Events("Fritz Kalkbrenner", "Vienna", "1030", `Arena Wien - Baumgasse 80`, "img/kalki.jpg", new Date(Date.now() - 1000000000), new Date(2022, 12, 9, 19, 30), 30.80)
 ]
 
-let currentPageFilter : string = "";
+let currentPageFilter : string = "all";
 let currentPageSort : {sort : string, asc : boolean} = {sort : "", asc : true};
+const heading : {[key: string]: string} = {
+    all : "All Places",
+    locations : "All Locations",
+    restaurant : "All Restaurants",
+    events : "All Events"
+}
 
 createContent(locationArr);
 registerElements();
@@ -23,6 +29,12 @@ function createContent(data : Array<Locations>) : void{
     let generatedContent : string = '';
     data.forEach(location => generatedContent += location.display());
     document.querySelector(`[data-meta="entry"]`)!.innerHTML = generatedContent;
+
+    createHeading();
+}
+
+function createHeading() {
+    document.querySelector(`[data-meta="heading"]`)!.innerHTML = heading[currentPageFilter];
 }
 
 function registerElements() : void {
@@ -36,7 +48,7 @@ function registerElements() : void {
 */
 function filterContent(filter: string) : void {
     currentPageFilter = filter;
-    if (!currentPageFilter) createContent(locationArr);
+    if (currentPageFilter === "all") createContent(locationArr);
     else createContent(locationArr.filter(ele => ele.constructor.name.toLowerCase() === currentPageFilter));
 }
 

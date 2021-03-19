@@ -13,14 +13,24 @@ const locationArr = [
     new Events("Woodkid", "Vienna", "1100", `Planet.tt/Gasometer - Guglgasse 8`, "img/woodkid.jpg", new Date(Date.now() - 30000000000), new Date(2021, 9, 24, 20, 0), 40.50),
     new Events("Fritz Kalkbrenner", "Vienna", "1030", `Arena Wien - Baumgasse 80`, "img/kalki.jpg", new Date(Date.now() - 1000000000), new Date(2022, 12, 9, 19, 30), 30.80)
 ];
-let currentPageFilter = "";
+let currentPageFilter = "all";
 let currentPageSort = { sort: "", asc: true };
+const heading = {
+    all: "All Places",
+    locations: "All Locations",
+    restaurant: "All Restaurants",
+    events: "All Events"
+};
 createContent(locationArr);
 registerElements();
 function createContent(data) {
     let generatedContent = '';
     data.forEach(location => generatedContent += location.display());
     document.querySelector(`[data-meta="entry"]`).innerHTML = generatedContent;
+    createHeading();
+}
+function createHeading() {
+    document.querySelector(`[data-meta="heading"]`).innerHTML = heading[currentPageFilter];
 }
 function registerElements() {
     document.querySelectorAll(`[data-meta="filter"]`).forEach(ele => ele.addEventListener("click", function () { filterContent(this.dataset.assoc || ""); }));
@@ -32,7 +42,7 @@ function registerElements() {
 */
 function filterContent(filter) {
     currentPageFilter = filter;
-    if (!currentPageFilter)
+    if (currentPageFilter === "all")
         createContent(locationArr);
     else
         createContent(locationArr.filter(ele => ele.constructor.name.toLowerCase() === currentPageFilter));
