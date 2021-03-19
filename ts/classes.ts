@@ -1,7 +1,7 @@
 class Locations {
     private static instanceCounter : number = 0;
     
-    protected name : string;
+    protected title : string;
     protected city : string;
     protected zipCode : string;
     protected address : string;
@@ -9,8 +9,8 @@ class Locations {
     protected date : Date;
     protected id : number;
 
-    constructor(name : string, city : string, zipCode : string, address : string, imgPath : string, date : Date){
-        this.name = name;
+    constructor(title : string, city : string, zipCode : string, address : string, imgPath : string, date : Date){
+        this.title = title;
         this.city = city;
         this.zipCode = zipCode;
         this.address = address;
@@ -30,9 +30,9 @@ class Locations {
         return `
         <div class="col">
             <div class="card">
-                <img src="${this.imgPath}" class="card-img-top rounded img-fluid" alt="picture of ${this.name}">
+                <img src="${this.imgPath}" class="card-img-top rounded img-fluid" alt="picture of ${this.title}">
                 <div class="card-body">
-                    <h5 class="card-title fw-bolder">${this.name}</h5>
+                    <h5 class="card-title fw-bolder">${this.title}</h5>
                     ${this.getPropsToDisplayAsHTML()}
                 </div>
                 <div class="card-footer">
@@ -49,8 +49,8 @@ class Restaurant extends Locations {
     protected cuisineType : string;
     protected url : URL;
 
-    constructor(name : string, city : string, zipCode : string, address : string, imgPath : string, date : Date, telNumber : string, cuisineType : string, url : URL){
-        super(name, city, zipCode, address, imgPath, date);
+    constructor(title : string, city : string, zipCode : string, address : string, imgPath : string, date : Date, telNumber : string, cuisineType : string, url : URL){
+        super(title, city, zipCode, address, imgPath, date);
         this.telNumber = telNumber;
         this.cuisineType = cuisineType;
         this.url = url;
@@ -60,7 +60,7 @@ class Restaurant extends Locations {
         return `${super.getPropsToDisplayAsHTML()}
                 <p>${this.telNumber}</p>
                 <p>${this.cuisineType}</p>
-                <p>${this.url}</p>`
+                <p><a href=${this.url}>${this.url}</a></p>`
     }
 }
 
@@ -68,8 +68,8 @@ class Events extends Locations {
     protected eventDate : Date;
     protected price : number;
 
-    constructor(name : string, city : string, zipCode : string, address : string, imgPath : string, date : Date, eventDate : Date, price : number){
-        super(name, city, zipCode, address, imgPath, date);
+    constructor(title : string, city : string, zipCode : string, address : string, imgPath : string, date : Date, eventDate : Date, price : number){
+        super(title, city, zipCode, address, imgPath, date);
         this.eventDate = eventDate;
         this.price = price;
     }

@@ -7,10 +7,22 @@ const locationArr : Array<Locations>  = [
     new Events("Lenny Kravitz", "Vienna", "1150", `Wiener Stadthalle, Halle D, Roland Rainer Platz 1`, "img/kravitz.jpg", new Date(Date.now() - 30000000000), new Date(2029, 12, 9, 19, 30), 47.80)
 ]
 
-createContent();
 
-function createContent() {
+createContent(locationArr);
+registerElements();
+
+function createContent(data : Array<Locations>) : void{
     let generatedContent : string = '';
-    locationArr.forEach(location => generatedContent += location.display());
+    data.forEach(location => generatedContent += location.display());
     document.querySelector(`[data-meta="Entry"]`)!.innerHTML = generatedContent;
+}
+
+function registerElements() : void {
+    document.querySelectorAll(`[data-meta="Filter"]`).forEach(ele => ele.addEventListener("click", filterContent));
+}
+
+function filterContent(this: HTMLElement) : void {
+    let filter : string = this.dataset.assoc?.toLowerCase() || "";
+    if (!filter) createContent(locationArr);
+    else createContent(locationArr.filter(ele => ele.constructor.name.toLowerCase() === filter));
 }

@@ -1,22 +1,7 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var Locations = /** @class */ (function () {
-    function Locations(name, city, zipCode, address, imgPath, date) {
-        this.name = name;
+class Locations {
+    constructor(title, city, zipCode, address, imgPath, date) {
+        this.title = title;
         this.city = city;
         this.zipCode = zipCode;
         this.address = address;
@@ -24,39 +9,53 @@ var Locations = /** @class */ (function () {
         this.date = date;
         this.id = ++Locations.instanceCounter;
     }
-    Locations.prototype.getPropsToDisplayAsHTML = function () {
-        return "\n                <p>" + this.city + "</p>\n                <p>" + this.zipCode + "</p>\n                <p>" + this.address + "</p>";
-    };
-    Locations.prototype.display = function () {
-        return "\n        <div class=\"col\">\n            <div class=\"card\">\n                <img src=\"" + this.imgPath + "\" class=\"card-img-top rounded img-fluid\" alt=\"picture of " + this.name + "\">\n                <div class=\"card-body\">\n                    <h5 class=\"card-title fw-bolder\">" + this.name + "</h5>\n                    " + this.getPropsToDisplayAsHTML() + "\n                </div>\n                <div class=\"card-footer\">\n                    <p class=\"fs-6 text-end text-muted\">Created: " + this.date.toLocaleDateString() + " " + this.date.toLocaleTimeString() + "</p>\n                </div>\n            </div>\n        </div>\n        ";
-    };
-    Locations.instanceCounter = 0;
-    return Locations;
-}());
-var Restaurant = /** @class */ (function (_super) {
-    __extends(Restaurant, _super);
-    function Restaurant(name, city, zipCode, address, imgPath, date, telNumber, cuisineType, url) {
-        var _this = _super.call(this, name, city, zipCode, address, imgPath, date) || this;
-        _this.telNumber = telNumber;
-        _this.cuisineType = cuisineType;
-        _this.url = url;
-        return _this;
+    getPropsToDisplayAsHTML() {
+        return `
+                <p>${this.city}</p>
+                <p>${this.zipCode}</p>
+                <p>${this.address}</p>`;
     }
-    Restaurant.prototype.getPropsToDisplayAsHTML = function () {
-        return _super.prototype.getPropsToDisplayAsHTML.call(this) + "\n                <p>" + this.telNumber + "</p>\n                <p>" + this.cuisineType + "</p>\n                <p>" + this.url + "</p>";
-    };
-    return Restaurant;
-}(Locations));
-var Events = /** @class */ (function (_super) {
-    __extends(Events, _super);
-    function Events(name, city, zipCode, address, imgPath, date, eventDate, price) {
-        var _this = _super.call(this, name, city, zipCode, address, imgPath, date) || this;
-        _this.eventDate = eventDate;
-        _this.price = price;
-        return _this;
+    display() {
+        return `
+        <div class="col">
+            <div class="card">
+                <img src="${this.imgPath}" class="card-img-top rounded img-fluid" alt="picture of ${this.title}">
+                <div class="card-body">
+                    <h5 class="card-title fw-bolder">${this.title}</h5>
+                    ${this.getPropsToDisplayAsHTML()}
+                </div>
+                <div class="card-footer">
+                    <p class="fs-6 text-end text-muted">Created: ${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}</p>
+                </div>
+            </div>
+        </div>
+        `;
     }
-    Events.prototype.getPropsToDisplayAsHTML = function () {
-        return _super.prototype.getPropsToDisplayAsHTML.call(this) + "\n                <p>" + this.eventDate.toLocaleDateString() + " " + this.eventDate.toLocaleTimeString() + "</p>\n                <p>" + this.price.toFixed(2) + " EUR</p>";
-    };
-    return Events;
-}(Locations));
+}
+Locations.instanceCounter = 0;
+class Restaurant extends Locations {
+    constructor(title, city, zipCode, address, imgPath, date, telNumber, cuisineType, url) {
+        super(title, city, zipCode, address, imgPath, date);
+        this.telNumber = telNumber;
+        this.cuisineType = cuisineType;
+        this.url = url;
+    }
+    getPropsToDisplayAsHTML() {
+        return `${super.getPropsToDisplayAsHTML()}
+                <p>${this.telNumber}</p>
+                <p>${this.cuisineType}</p>
+                <p><a href=${this.url}>${this.url}</a></p>`;
+    }
+}
+class Events extends Locations {
+    constructor(title, city, zipCode, address, imgPath, date, eventDate, price) {
+        super(title, city, zipCode, address, imgPath, date);
+        this.eventDate = eventDate;
+        this.price = price;
+    }
+    getPropsToDisplayAsHTML() {
+        return `${super.getPropsToDisplayAsHTML()}
+                <p>${this.eventDate.toLocaleDateString()} ${this.eventDate.toLocaleTimeString()}</p>
+                <p>${this.price.toFixed(2)} EUR</p>`;
+    }
+}
