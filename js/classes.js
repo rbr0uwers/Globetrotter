@@ -15,12 +15,15 @@ class Locations {
     display() {
         return `
         <div class="col">
-            <div class="card">
+            <div class="card h-100">
                 <img src="${this.imgPath}" class="img-custom card-img-top rounded img-fluid" alt="picture of ${this.title}">
                 <div class="card-body">
                     <h5 class="card-title fw-bolder mt-3">${this.title}</h5>
                     <div><i class="far fa-folder"></i><span>${this.constructor.name}</span></div>
-                    <div><i class="far fa-map"></i><span>${this.address}, ${this.zipCode} ${this.city}</span></div>
+                    <div class="d-flex">
+                        <div><i class="far fa-map"></i></div>
+                        <div><span>${this.address}, ${this.zipCode} ${this.city}</span></div>
+                    </div>
                 </div>
                 ${this.additionalPropsToDisplay()}
                 <div class="card-footer bg-white text-end">
@@ -43,7 +46,7 @@ class Restaurant extends Locations {
                 <div class="card-body border-top">
                     <div><i class="fas fa-tag"></i><span>${this.cuisineType}</span></div>
                     <div><i class="fas fa-phone-alt"></i><span>${this.telNumber}</span></div>
-                    <div><i class="fas fa-external-link-alt"></i><a href="${this.url}" class="card-link text-dark">Website</a></div></div>
+                    <div><i class="fas fa-external-link-alt"></i><a href="${this.url}" class="card-link text-dark">Website</a></div>
                 </div>`;
     }
 }
