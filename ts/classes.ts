@@ -19,28 +19,26 @@ class Locations {
         this.id = ++Locations.instanceCounter;
     }
 
-    protected getPropsToDisplayAsHTML() {
-        return `
-                <p>${this.city}</p>
-                <p>${this.zipCode}</p>
-                <p>${this.address}</p>`
+    protected additionalPropsToDisplay() {
+        return "";
     }
 
     display() : string {
         return `
         <div class="col">
             <div class="card">
-                <img src="${this.imgPath}" class="card-img-top rounded img-fluid" alt="picture of ${this.title}">
+                <img src="${this.imgPath}" class="img-custom card-img-top rounded img-fluid" alt="picture of ${this.title}">
                 <div class="card-body">
-                    <h5 class="card-title fw-bolder">${this.title}</h5>
-                    ${this.getPropsToDisplayAsHTML()}
+                    <h5 class="card-title fw-bolder mt-3">${this.title}</h5>
+                    <div><i class="far fa-folder"></i><span>${this.constructor.name}</span></div>
+                    <div><i class="far fa-map"></i><span>${this.address}, ${this.zipCode} ${this.city}</span></div>
                 </div>
-                <div class="card-footer">
-                    <p class="fs-6 text-end text-muted">Created: ${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}</p>
+                ${this.additionalPropsToDisplay()}
+                <div class="card-footer bg-white text-end">
+                    <i class="far fa-calendar-alt"></i><small class="text-muted">${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}</small>
                 </div>
             </div>
-        </div>
-        `
+        </div>`
     }
 }
 
@@ -56,11 +54,13 @@ class Restaurant extends Locations {
         this.url = url;
     }
 
-    protected getPropsToDisplayAsHTML() {
-        return `${super.getPropsToDisplayAsHTML()}
-                <p>${this.telNumber}</p>
-                <p>${this.cuisineType}</p>
-                <p><a href=${this.url}>${this.url}</a></p>`
+    protected additionalPropsToDisplay() {
+        return `${super.additionalPropsToDisplay()}
+                <div class="card-body border-top">
+                    <div><i class="fas fa-tag"></i><span>${this.cuisineType}</span></div>
+                    <div><i class="fas fa-phone-alt"></i><span>${this.telNumber}</span></div>
+                    <div><i class="fas fa-external-link-alt"></i><a href="${this.url}" class="card-link text-dark">Website</a></div></div>
+                </div>`
     }
 }
 
@@ -74,9 +74,11 @@ class Events extends Locations {
         this.price = price;
     }
 
-    protected getPropsToDisplayAsHTML() {
-        return `${super.getPropsToDisplayAsHTML()}
-                <p>${this.eventDate.toLocaleDateString()} ${this.eventDate.toLocaleTimeString()}</p>
-                <p>${this.price.toFixed(2)} EUR</p>`
+    protected additionalPropsToDisplay() {
+        return `${super.additionalPropsToDisplay()}
+                <div class="card-body border-top">
+                    <div><i class="far fa-calendar-alt"></i><span>${this.eventDate.toLocaleDateString()} ${this.eventDate.toLocaleTimeString()}</span></div>
+                    <div><i class="far fa-money-bill-alt"></i><span>${this.price.toFixed(2)} EUR</span></div>
+                </div>`
     }
 }
