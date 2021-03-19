@@ -36,7 +36,7 @@ class Locations {
                     ${this.getPropsToDisplayAsHTML()}
                 </div>
                 <div class="card-footer">
-                    <p class="fs-4 text-end secondaryfont ">Created: ${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}</small>
+                    <p class="fs-6 text-end text-muted">Created: ${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}</p>
                 </div>
             </div>
         </div>
@@ -77,6 +77,6 @@ class Events extends Locations {
     protected getPropsToDisplayAsHTML() {
         return `${super.getPropsToDisplayAsHTML()}
                 <p>${this.eventDate.toLocaleDateString()} ${this.eventDate.toLocaleTimeString()}</p>
-                <p>${this.price}</p>`
+                <p>${this.price.toFixed(2)} EUR</p>`
     }
 }
