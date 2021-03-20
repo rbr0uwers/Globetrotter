@@ -1,13 +1,11 @@
 class Locations {
-    private static instanceCounter : number = 0;
-    
     protected title : string;
     protected city : string;
     protected zipCode : string;
     protected address : string;
     protected imgPath : string;
     protected date : Date;
-    protected id : number;
+
 
     constructor(title : string, city : string, zipCode : string, address : string, imgPath : string, date : Date){
         this.title = title;
@@ -16,7 +14,6 @@ class Locations {
         this.address = address;
         this.imgPath = imgPath;
         this.date = date;
-        this.id = ++Locations.instanceCounter;
     }
 
     protected additionalPropsToDisplay() {
