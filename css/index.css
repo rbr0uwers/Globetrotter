@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Playfair+Display&display=swap');
 
+/* -------- Navbar --------  */
 .navbar-brand, .custom-footer {
     font-family: 'Playfair Display', serif;
 }
@@ -8,6 +9,19 @@
     height: 5rem;
 }
 
+.nav-link {
+    white-space: nowrap;
+    font-family: 'Cutive Mono', monospace;
+    color: inherit;
+    padding: 0.5rem;
+}
+
+.custom-font {
+    font-family: 'Cutive Mono', monospace;
+}
+
+
+/* -------- Cards --------  */
 .card {
     border-style: solid;
     border-width: 35px 35px 10px 35px;
@@ -30,10 +44,6 @@
     object-fit: cover;
 }
 
-#navbarNav, .custom-font {
-    font-family: 'Cutive Mono', monospace;
-}
-
 .far, .fas {
     width: 2rem;
 }
@@ -48,9 +58,18 @@
     text-align: left;
 }
 
+/* -------- Responsive -------- */
 @media (max-width: 767.98px) { 
 
     .card>.img-custom {
         display: none;
+    }
+}
+
+@media (max-width: 575.98px) { 
+
+    .nav-link {
+        padding: 0.2rem;
+        font-size: 0.8rem;
     }
 }

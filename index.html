@@ -20,25 +20,22 @@
             <span class="navbar-brand fs-1" href="#">The Globetrotter</span>
         </div>
     </div>
-    <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top border-bottom">
+    <nav class="navbar navbar-light bg-white sticky-top border-bottom">
         <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <i class="fas fa-filter"></i>
-                <ul class="navbar-nav">
-                    <li class="nav-item" data-meta="filter" data-assoc="all"><a class="nav-link" href="#">None</a></li>
-                    <li class="nav-item" data-meta="filter" data-assoc="locations"><a class="nav-link" href="#">Locations</a></li>
-                    <li class="nav-item" data-meta="filter" data-assoc="restaurant"><a class="nav-link" href="#">Restaurants</a></li>
-                    <li class="nav-item" data-meta="filter" data-assoc="events"><a class="nav-link" href="#">Events</a></li>
-                </ul>
-                <i class="ms-auto fas fa-sort"></i>
-                <ul class="navbar-nav">
-                    <li class="nav-item" data-meta="sort" data-assoc="date"><a class="nav-link" href="#">Creation Date</a></li>
-                    <li class="nav-item" data-meta="sort" data-assoc="title"><a class="nav-link" href="#">Title</a></li>
-                </ul>
-            </div>
+            <div class="row justify-content-between w-100">
+                <div class="col-md-8 d-flex flex-row navbar-text">
+                    <div class="d-flex align-items-center"><i class="fas fa-filter text-center"></i></div>
+                    <a class="nav-link" href="#" data-meta="filter" data-assoc="all">None</a>
+                    <a class="nav-link" href="#" data-meta="filter" data-assoc="locations">Locations</a>
+                    <a class="nav-link" href="#" data-meta="filter" data-assoc="restaurant">Restaurants</a>
+                    <a class="nav-link" href="#" data-meta="filter" data-assoc="events">Events</a>
+                </div>
+                <div class="col-md-4 d-flex flex-row justify-content-md-end navbar-text">
+                    <div class="d-flex align-items-center"><i class="fas fa-sort text-center"></i></div>
+                    <a class="nav-link" href="#" data-meta="sort" data-assoc="date">Creation Date</a>
+                    <a class="nav-link" href="#" data-meta="sort" data-assoc="title">Title</a>
+                </div>
+            </div>   
         </div>
     </nav>
     <!-- Main -->
@@ -56,7 +53,7 @@
             <p class="text-dark text-center m-5" >© 2021 Copyright: The Globetrotter</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
     <script src="js/classes.js"></script>
     <script src="js/index.js"></script>
     
