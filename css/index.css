@@ -8,6 +8,23 @@
     height: 5rem;
 }
 
+.card {
+    border-style: solid;
+    border-width: 35px 35px 10px 35px;
+    -moz-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
+    -webkit-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
+    -o-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
+    border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
+}
+
+.card-body, .card-footer, .list-group-item {
+    background-color: #FDFBEE;
+}
+
+.card .list-group {
+    border-width: 0px;
+}
+
 .card>.img-custom {
     height: 200px;
     object-fit: cover;
@@ -19,6 +36,11 @@
 
 .far, .fas {
     width: 2rem;
+}
+
+/* Specificity battle with Bootstrap... */
+.col>.card>.card-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .card-footer .far {

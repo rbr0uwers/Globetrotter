@@ -34,7 +34,7 @@ class Locations {
                     </div>
                 </div>
                 ${this.additionalPropsToDisplay()}
-                <div class="card-footer bg-white text-end">
+                <div class="card-footer text-end">
                     <i class="far fa-calendar-alt"></i><small class="text-muted">${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}</small>
                 </div>
             </div>
