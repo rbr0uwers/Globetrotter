@@ -17,7 +17,7 @@
     font-family: 'Cutive Mono', monospace;
 }
 
-.card-body .far, .card-body .fas {
+.far, .fas {
     width: 2rem;
 }
 

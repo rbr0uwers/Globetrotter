@@ -56,11 +56,11 @@ class Restaurant extends Locations {
 
     protected additionalPropsToDisplay() {
         return `${super.additionalPropsToDisplay()}
-                <div class="card-body border-top">
-                    <div><i class="fas fa-tag"></i><span>${this.cuisineType}</span></div>
-                    <div><i class="fas fa-phone-alt"></i><span>${this.telNumber}</span></div>
-                    <div><i class="fas fa-external-link-alt"></i><a href="${this.url}" class="card-link text-dark">Website</a></div>
-                </div>`
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-tag"></i><span>${this.cuisineType}</span></li>
+                    <li class="list-group-item"><i class="fas fa-phone-alt"></i><span>${this.telNumber}</span></li>
+                    <li class="list-group-item"><i class="fas fa-external-link-alt"></i><a href="${this.url}" class="card-link text-dark">Website</a></li>
+                </ul>`
     }
 }
 
@@ -76,9 +76,9 @@ class Events extends Locations {
 
     protected additionalPropsToDisplay() {
         return `${super.additionalPropsToDisplay()}
-                <div class="card-body border-top">
-                    <div><i class="far fa-calendar-alt"></i><span>${this.eventDate.toLocaleDateString()} ${this.eventDate.toLocaleTimeString()}</span></div>
-                    <div><i class="far fa-money-bill-alt"></i><span>${this.price.toFixed(2)} EUR</span></div>
-                </div>`
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="far fa-calendar-alt"></i><span>${this.eventDate.toLocaleDateString()} ${this.eventDate.toLocaleTimeString()}</span></li>
+                    <li class="list-group-item"><i class="far fa-money-bill-alt"></i><span>${this.price.toFixed(2)} EUR</span></li>
+                </ul>`
     }
 }

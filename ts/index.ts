@@ -25,7 +25,7 @@ const heading : {[key: string]: string} = {
 createContent(locationArr);
 registerElements();
 
-function createContent(data : Array<Locations>) : void{
+function createContent(data : Array<Locations>) : void {
     let generatedContent : string = '';
     data.forEach(location => generatedContent += location.display());
     document.querySelector(`[data-meta="entry"]`)!.innerHTML = generatedContent;
@@ -33,7 +33,7 @@ function createContent(data : Array<Locations>) : void{
     createHeading();
 }
 
-function createHeading() {
+function createHeading() : void {
     document.querySelector(`[data-meta="heading"]`)!.innerHTML = heading[currentPageFilter];
 }
 
@@ -71,7 +71,7 @@ function sortContent(prop : string) : void {
     filterContent(currentPageFilter);
 }
 
-function evaluateCurrentSort(prop : string) {
+function evaluateCurrentSort(prop : string) : boolean {
     if (currentPageSort.sort === prop) {
         currentPageSort.asc = !currentPageSort.asc;
     } else {
