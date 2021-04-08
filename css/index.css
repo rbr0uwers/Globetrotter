@@ -24,6 +24,7 @@
 /* -------- Cards --------  */
 .card {
     border-style: solid;
+    border-color:  #FDFBEE;
     border-width: 35px 35px 10px 35px;
     -moz-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
     -webkit-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
