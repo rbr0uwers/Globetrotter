@@ -26,10 +26,10 @@
     border-style: solid;
     border-color:  #FDFBEE;
     border-width: 35px 35px 10px 35px;
-    -moz-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
-    -webkit-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
-    -o-border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
-    border-image: url(../img/post-it.png) 35 35 10 35 repeat repeat;
+    -moz-border-image: url(../img/postit.png) 35 35 10 35 repeat repeat;
+    -webkit-border-image: url(../img/postit.png) 35 35 10 35 repeat repeat;
+    -o-border-image: url(../img/postit.png) 35 35 10 35 repeat repeat;
+    border-image: url(../img/postit.png) 35 35 10 35 repeat repeat;
 }
 
 .card-body, .card-footer, .list-group-item {
